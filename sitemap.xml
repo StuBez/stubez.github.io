@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>
+            http://stubez.github.io/symfony2-associating-doctrine-entities-without-directly-fetching-from-the-database/
+        </loc>
+        <lastmod>2013-06-02T20:12:03+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://stubez.github.io/blog/archives/</loc>
+        <lastmod>2013-06-02T20:12:03+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://stubez.github.io/</loc>
+        <lastmod>2013-06-02T20:12:03+01:00</lastmod>
+    </url>
+    <url>
+        <loc>http://stubez.github.io/robots.txt</loc>
+        <lastmod>2013-06-02T19:45:29+01:00</lastmod>
+    </url>
+</urlset>

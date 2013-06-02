@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: programming | Is this thing on?]]></title>
+  <link href="http://stubez.github.io/blog/categories/programming/atom.xml" rel="self"/>
+  <link href="http://stubez.github.io/"/>
+  <updated>2013-06-02T20:12:36+01:00</updated>
+  <id>http://stubez.github.io/</id>
+  <author>
+    <name><![CDATA[Stuart Chapman]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Symfony2- associating Doctrine entities without (directly) fetching from the database]]></title>
+    <link href="http://stubez.github.io/symfony2-associating-doctrine-entities-without-directly-fetching-from-the-database/"/>
+    <updated>2013-05-20T00:00:00+01:00</updated>
+    <id>http://stubez.github.io/symfony2-associating-doctrine-entities-without-directly-fetching-from-the-database</id>
+    <content type="html"><![CDATA[<p>Several times I&rsquo;ve want to associate an entity with a known primary key, such as a status, with an entity that I&rsquo;ve already fetched from the database and need to update, without having to make another manual request before I can update the parent entity.</p>
+
+<!-- more -->
+
+
+<p>The Doctrine <code>EntityManager</code> has a handy method called <code>getReference</code> to do exactly this:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="x">&amp;lt;?php</span>
+</span><span class='line'><span class="x">// Get the EntityManager</span>
+</span><span class='line'><span class="x">$em = $this-&gt;getDoctrine()&amp;ndash;&gt;getManager();&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;p&gt;// Fetch the Parent entity from the database</span>
+</span><span class='line'><span class="x">$em-&gt;getRepository(&amp;lsquo;AcmeDemoBundle:Parent&amp;rsquo;)&amp;ndash;&gt;find(10);&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;p&gt;// Get a reference to an existing entity</span>
+</span><span class='line'><span class="x">$entity = $em-&gt;getReference(&amp;lsquo;AcmeDemoBundle:Entity&amp;rsquo;, 1);&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;p&gt;// Associate it with the previously fetched object, as normal</span>
+</span><span class='line'><span class="x">$parentEntity-&gt;setEntity($entity);&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;p&gt;// Flush the changes</span>
+</span><span class='line'><span class="x">$em-&gt;flush();</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>It appears that Doctrine needs to fetch the referenced object from the database before the update can happen but it at least makes the code shorter and ensures the <code>SELECT</code> and <code>UPDATE</code> happen in the same database connection.</p>
+]]></content>
+  </entry>
+  
+</feed>
